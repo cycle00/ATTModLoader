@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const { remote } = require('electron');
+const { remote, dialog } = require('electron');
 
 var win = remote.getCurrentWindow();
 

@@ -3,6 +3,7 @@ const { pathExists } = require("fs-extra");
 const path = require('path');
 const url = require('url');
 const ejse = require('ejs-electron')
+const fs = require('fs');
 
 app.disableHardwareAcceleration();
 app.allowRendererProcessReuse = true;
@@ -26,7 +27,21 @@ function createWindow() {
         backgroundColor: '#212121'
     });
 
-    win.loadFile(path.join(__dirname, 'index.ejs'));
+    fs.access('./gameDirectory.txt', fs.F_OK, (err) => {
+        if (err) {
+            win.loadFile(path.join(__dirname, 'setup.ejs'));
+            return;
+        }
+        fs.readFile('./gameDirectory.txt', 'utf8', function(err, data) {
+            if (err) throw err;
+            if (data == "")
+               win.loadFile(path.join(__dirname, 'setup.ejs'));
+            else
+                win.loadFile(path.join(__dirname, 'index.ejs'));
+        });
+    })
+
+    //win.openDevTools();
 
     win.resizable = true;
     win.on('closed', () => {
