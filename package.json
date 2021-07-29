@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,9 @@
   },
   "homepage": "https://github.com/cycle00/ATTModLoader#readme",
   "devDependencies": {
-    "electron": "^13.1.7"
+    "electron": "^13.1.7",
+    "electron-builder": "^22.11.7",
+    "electron-packager": "^15.3.0"
   },
   "dependencies": {
     "ejs": "^3.1.6",
@@ -27,5 +30,18 @@
     "fs-extra": "^8.1.0",
     "jquery": "^3.6.0",
     "semver": "^6.3.0"
+  },
+  "build": {
+    "appId": "com.christoffyw.attmodloader",
+    "productName": "ATT Mod Loader",
+    "icon": "icon.png",
+    "target": "NSIS",
+    "directories": {
+      "output": "build"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    }
   }
 }
