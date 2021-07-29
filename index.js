@@ -1,4 +1,8 @@
 const { app, BrowserWindow, ipcMain, Menu } = require("electron");
+const { pathExists } = require("fs-extra");
+const path = require('path');
+const url = require('url');
+const ejse = require('ejs-electron')
 
 app.disableHardwareAcceleration();
 app.allowRendererProcessReuse = true;
@@ -7,18 +11,22 @@ let win;
 
 function createWindow() {
     win = new BrowserWindow({
-        width: 980,
-        height: 550,
+        width: 1280,
+        height: 720,
+        frame: false,
         //icon: TODO,
         title: 'ATT Mod Loader',
+        icon: path.join(__dirname, 'icon.png'),
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true,
             worldSafeExecuteJavaScript: true
         },
-        backgroundColor: '#171614'
+        backgroundColor: '#212121'
     });
+
+    win.loadFile(path.join(__dirname, 'index.ejs'));
 
     win.resizable = true;
     win.on('closed', () => {
