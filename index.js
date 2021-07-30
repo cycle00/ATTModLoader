@@ -41,7 +41,7 @@ function createWindow() {
         });
     })
 
-    //win.openDevTools();
+    win.openDevTools();
 
     win.resizable = true;
     win.on('closed', () => {

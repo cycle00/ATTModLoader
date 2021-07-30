@@ -32,7 +32,7 @@ document.getElementById("chooseFolder").onclick = async function() {
 document.getElementById("confirmButton").onclick = async function() {
     fs.writeFile('gameDirectory.txt', folderPath.filePaths[0], function (err) {
         if(err) return console.log(err);
-        win.loadFile(path.join(__dirname, 'index.ejs'));
+        win.loadFile(path.join(__dirname, 'setup2.ejs'));
     })
 };
 

@@ -46,18 +46,20 @@
         <div class="setup">
             <center>
                 <p class="thick">Setup</p><br>
-                <p>To setup the mod loader you have to select your game directory.</p><br>
-                <button id="chooseFolder">Choose Game Directory</button><br>
-                <p id="pathText">Selected Game Directory:</p><br>
-                <p id="pathDisplay"></p><br>
-                <button id="confirmButton">Continue</button>
+                <p>To continue with the setup we need to download BepInEx. This requires an internet connection.</p><br>
+                <button id="downloadBep">Download BepInEx</button><br>
+                <p id="pathText"></p><br>
+                <p id="displayText">To finish the mod setup, launch the game to create some necessary files.<br> After you see the login screen you can then close the game.</p><br>
+                <button id="confirmButton">Launch A Township Tale</button><br>
+                <button id="continueButton">Continue</button>
                 <script>
                     document.getElementById("pathText").style.visibility = "hidden";
                     document.getElementById("confirmButton").style.visibility = "hidden";
-                    document.getElementById("pathDisplay").style.visibility = "hidden";
+                    document.getElementById("continueButton").style.visibility = "hidden";
+                    document.getElementById("displayText").style.visibility = "hidden";
                 </script>
             </center>
         </div>
-        <script src="setupManager.js"></script>
+        <script src="downloadManager.js"></script>
     </body>
 </html>

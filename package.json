@@ -24,12 +24,14 @@
     "electron-packager": "^15.3.0"
   },
   "dependencies": {
+    "@terascope/fetch-github-release": "^0.7.7",
     "ejs": "^3.1.6",
     "ejs-electron": "^2.1.1",
     "electron-updater": "^4.3.9",
     "fs-extra": "^8.1.0",
     "jquery": "^3.6.0",
-    "semver": "^6.3.0"
+    "semver": "^6.3.0",
+    "unzipper": "^0.10.11"
   },
   "build": {
     "appId": "com.christoffyw.attmodloader",
