@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain, Menu } = require("electron");
-const { pathExists } = require("fs-extra");
+const fs = require("fs-extra");
 const path = require('path');
 const url = require('url');
 const ejse = require('ejs-electron')
@@ -37,7 +37,7 @@ function createWindow() {
             if (data == "")
                win.loadFile(path.join(__dirname, 'setup.ejs'));
             else
-                win.loadFile(path.join(__dirname, 'index.ejs'));
+                win.loadFile(path.join(__dirname, 'app', 'index.ejs'));
         });
     })
 
