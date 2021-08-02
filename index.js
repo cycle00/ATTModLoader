@@ -41,8 +41,6 @@ function createWindow() {
         });
     })
 
-    win.openDevTools();
-
     win.resizable = true;
     win.on('closed', () => {
         win = null;
