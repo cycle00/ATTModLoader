@@ -13,7 +13,9 @@ let win;
 function createWindow() {
     win = new BrowserWindow({
         width: 1280,
-        height: 720,
+        height: 730,
+        'minHeight': 730,
+        'minWidth': 1280,
         frame: false,
         //icon: TODO,
         title: 'ATT Mod Loader',

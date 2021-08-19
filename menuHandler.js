@@ -34,32 +34,45 @@ function reloadModList(pluginFolders, table, data) {
             table.deleteRow(i);
         }
     }
+
+    var validMods = [];
+
     for(var i = 0; i < pluginFolders.length; i++) {
-        let modInfo = fsReadFileSynchToArray(path.join(data, 'BepInEx\\plugins\\', pluginFolders[i], '\\mod.json'));
-        let row = table.insertRow();
-        row.classList.add("mod");
-        let iconCell = row.insertCell();
-        let iconImage = document.createElement("img");
-        iconImage.src = path.join(data, 'BepInEx\\plugins\\', pluginFolders[i], '\\', modInfo.icon);
-        iconImage.classList.add("modicon");
-        iconImage.setAttribute('draggable', false);
-        iconCell.appendChild(iconImage);
-        let modNameCell = row.insertCell();
-        let modNameText = document.createTextNode(modInfo.displayName);
-        modNameCell.appendChild(modNameText);
-        let modVersionCell = row.insertCell();
-        let modVersionText = document.createTextNode(modInfo.version);
-        modVersionCell.appendChild(modVersionText);
-        let modAuthorCell = row.insertCell();
-        let modAuthorText = document.createTextNode(modInfo.author);
-        modAuthorCell.appendChild(modAuthorText);
-        let deleteCell = row.insertCell();
-        let deleteCellButton = document.createElement("button");
-        deleteCellButton.innerHTML = "╳";
-        deleteCellButton.setAttribute("id", "deleteButton");
-        var path2 = data.replace(/\\/g, "//");
-        deleteCellButton.setAttribute("onclick", `javascript:DeleteMod("${path2 + "//" + 'BepInEx//plugins//' + pluginFolders[i]}", ${i})`);
-        deleteCell.appendChild(deleteCellButton);
+        try {
+            if (fs.existsSync(path.join(data, 'BepInEx\\plugins\\', pluginFolders[i], '\\mod.json'))) {
+                let modInfo = fsReadFileSynchToArray(path.join(data, 'BepInEx\\plugins\\', pluginFolders[i], '\\mod.json'));
+                validMods.push(modInfo.modID);
+                let row = table.insertRow();
+                row.classList.add("mod");
+                let iconCell = row.insertCell();
+                let iconImage = document.createElement("img");
+                iconImage.src = path.join(data, 'BepInEx\\plugins\\', pluginFolders[i], '\\', modInfo.icon);
+                iconImage.classList.add("modicon");
+                iconImage.setAttribute('draggable', false);
+                iconCell.appendChild(iconImage);
+                let modNameCell = row.insertCell();
+                let modNameText = document.createTextNode(modInfo.displayName);
+                modNameCell.appendChild(modNameText);
+                let modVersionCell = row.insertCell();
+                let modVersionText = document.createTextNode(modInfo.version);
+                modVersionCell.appendChild(modVersionText);
+                let modAuthorCell = row.insertCell();
+                let modAuthorText = document.createTextNode(modInfo.author);
+                modAuthorCell.appendChild(modAuthorText);
+                let deleteCell = row.insertCell();
+                let deleteCellButton = document.createElement("button");
+                deleteCellButton.innerHTML = "╳";
+                deleteCellButton.setAttribute("id", "deleteButton");
+                var path2 = data.replace(/\\/g, "//");
+                deleteCellButton.setAttribute("onclick", `javascript:DeleteMod("${path2 + "//" + 'BepInEx//plugins//' + pluginFolders[i]}", ${validMods.indexOf(modInfo.modID)})`);
+                deleteCell.appendChild(deleteCellButton);
+            }
+            else {
+
+            }
+        } catch(err) {
+            console.error(err)
+        }
     }
 }
 
